@@ -1,4 +1,4 @@
 package com.thoughtworks.tdd;
 
-public class ParkingLot {
+public class Car {
 }
