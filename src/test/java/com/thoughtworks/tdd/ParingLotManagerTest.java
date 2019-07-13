@@ -29,12 +29,14 @@ public class ParingLotManagerTest {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         parkingBoy.setName(parkingBoyname);
         parkingManger.getParkingBoys().add(parkingBoy);
-        Car car = new Car();
+        Car car = new Car("444");
         //when
-       boolean isSucessful= parkingManger.specifyBoyToPark(parkingBoyname,car);
+       ParkTicket parkTicket= parkingManger.specifyBoyToPark(parkingBoyname,car);
 
         //then
-        Assertions.assertTrue(isSucessful);
+        ParkTicket parkTicket1 = new ParkTicket(car.getCarNumber());
+
+        Assertions.assertEquals(parkTicket1,parkTicket);
 
     }
 

@@ -47,14 +47,32 @@ public class ParkingLotManager {
     }
 
 
-    public boolean specifyBoyToPark(String parkingBoyname, Car car) {
+    public ParkTicket specifyBoyToPark(String parkingBoyname, Car car) {
         ParkingBoy parkingBoy=this.getParkingBoys().stream().filter(e->e.getName()==parkingBoyname).map(e->(e)).findFirst().get();
+        if (parkingBoy == null) {
+            return null;
+        }
         ParkTicket parkTicket = parkingBoy.park(car);
 
-        if (parkingBoy != null) {
-            return true;
+        if (parkTicket!=null) {
+            return parkTicket;
         }else {
-            return false;
+            this.errorMessage=parkingBoy.getErrorMessage();
+            return null;
+        }
+    }
+    public Car specifyBoyTofetch(String parkingBoyname, ParkTicket parkTicket) {
+        ParkingBoy parkingBoy=this.getParkingBoys().stream().filter(e->e.getName()==parkingBoyname).map(e->(e)).findFirst().get();
+        if (parkingBoy != null) {
+            return null;
+        }
+        Car car = parkingBoy.fetchRightCar(parkTicket);
+
+        if (car != null) {
+            return car;
+        }else {
+            this.errorMessage=parkingBoy.getErrorMessage();
+            return car;
         }
     }
     public ParkTicket park(Car car) {
