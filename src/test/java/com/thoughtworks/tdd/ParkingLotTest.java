@@ -3,6 +3,9 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingLotTest {
     @Test
     public void should_return_true_or_false_when_add_a_car() {
@@ -14,4 +17,6 @@ public class ParkingLotTest {
         //then
         Assertions.assertEquals(true,isSuccess);
     }
+
+
 }
