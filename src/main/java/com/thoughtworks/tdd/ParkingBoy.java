@@ -15,4 +15,8 @@ public class ParkingBoy {
         return list;
     }
 
+    public Car fetchRightCar(ParkTicket parkTicket) {
+        Car car=new Car();
+        return car;
+    }
 }

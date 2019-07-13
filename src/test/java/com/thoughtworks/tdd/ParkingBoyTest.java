@@ -30,4 +30,15 @@ public class ParkingBoyTest {
         //then
         Assertions.assertEquals(new ArrayList<ParkTicket>().getClass(),parkTicketList.getClass());
     }
+    @Test
+    public void should_return_right_car_when_get_a_correspond_ticket () {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkTicket parkTicket=new ParkTicket();
+
+        //when
+        Car car = parkingBoy.fetchRightCar(parkTicket);
+        //then
+        Assertions.assertEquals(Car.class,car.getClass());
+    }
 }
