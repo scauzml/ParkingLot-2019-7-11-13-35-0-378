@@ -81,6 +81,8 @@ public class ParkingBoy {
                    this.parkingLot.getCars().remove(car);
                    this.parkingLot.getParkTicketList().remove(parkTicket);
 
+                }else {
+                    this.errorMessage= ErrorMessage.WRONG_TICKET_MESSAGE.getValue();
                 }
             }else {
                 this.errorMessage= ErrorMessage.WRONG_TICKET_MESSAGE.getValue();

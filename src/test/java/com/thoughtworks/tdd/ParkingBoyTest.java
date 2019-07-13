@@ -23,17 +23,23 @@ public class ParkingBoyTest {
         Assertions.assertEquals(parkTicket1,parkTicket);
     }
 
-//    @Test
-//    public void should_return_no_ticket_when_parkingLot_() {
-//        //given
-//        ParkingLot parkingLot=new ParkingLot();
-//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-//        Car car = new Car();
-//        //when
-//        ParkTicket parkTicket=parkingBoy.park(car);
-//        //then
-//        Assertions.assertEquals(ParkTicket.class,parkTicket.getClass());
-//    }
+    @Test
+    public void should_return_no_ticket_when_parkingLot_capacity_isNotEnough() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        parkingLot.addCar(car1);
+        parkingLot.addCar(car2);
+        //when
+        ParkTicket parkTicket=parkingBoy.park(car);
+        String message=parkingBoy.getErrorMessage();
+        //then
+        Assertions.assertEquals(null,parkTicket);
+        Assertions.assertEquals("Not enough position.",message);
+    }
     @Test
     public void should_return_parkTicketList_when_add_a_car_list() {
         //given
@@ -109,7 +115,10 @@ public class ParkingBoyTest {
         parkingLot.addParTicket(parkTicket);
         //when
         Car car = parkingBoy.fetchRightCar(parkTicket);
+        String errorMessage=parkingBoy.getErrorMessage();
         //then
         Assertions.assertEquals(null,car);
+        Assertions.assertEquals("Unrecognized parking ticket.",errorMessage);
+
     }
 }
