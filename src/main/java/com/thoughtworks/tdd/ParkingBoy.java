@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingBoy {
-     private ParkingLot parkingLot;
+     private List<ParkingLot> parkingLotList;
      private String errorMessage;
 
-    public ParkingLot getParkingLot() {
-        return parkingLot;
+    public List<ParkingLot> getParkingLotList() {
+        return parkingLotList;
     }
 
-    public void setParkingLot(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+    public void setParkingLotList(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 
     public String getErrorMessage() {
@@ -26,8 +26,8 @@ public class ParkingBoy {
         this.errorMessage = errorMessage;
     }
 
-    public ParkingBoy(ParkingLot parkingLot) {
-        this.parkingLot = parkingLot;
+    public ParkingBoy(List<ParkingLot> parkingLotList) {
+        this.parkingLotList = parkingLotList;
     }
 
     public ParkingBoy() {
@@ -39,15 +39,31 @@ public class ParkingBoy {
 
         if (car != null) {
             //查找car是否已经停过
-            boolean isParkedCar = parkingLot.isContainCar(car);
+
+            boolean isParkedCar = false;
+            for (ParkingLot e:this.parkingLotList
+                 ) {
+                isParkedCar= e.isContainCar(car);
+
+            }
             if (!isParkedCar) {
-                boolean isCapacityEnough=this.parkingLot.isCapacityEnough();
+                ParkingLot currentParingLot=null;
+                boolean isCapacityEnough = false;
+                for (ParkingLot e1:this.parkingLotList
+                ) {
+                    isCapacityEnough=e1.isCapacityEnough();
+                    if (isCapacityEnough) {
+                        currentParingLot=e1;
+                        break;
+                    }
+                }
+
                 if (isCapacityEnough) {
                     parkTicket=new ParkTicket();
                     //关联ticket,与car,而且停车场添加ticket
                     parkTicket.setCarNumber(car.getCarNumber());
-                    parkingLot.addParTicket(parkTicket);
-                    parkingLot.addCar(car);
+                    currentParingLot.addParTicket(parkTicket);
+                    currentParingLot.addCar(car);
                 }else {
                     this.errorMessage=ErrorMessage.NOT_ENOUGH_CAPACITY_MESSAGE.getValue();
                 }
@@ -72,14 +88,24 @@ public class ParkingBoy {
         Car car=null;
         //验证pakTicket是wrong
         if (parkTicket != null) {
-            boolean isRightTicket=parkingLot.isContainParkTicket(parkTicket);
+            boolean isRightTicket=false;
+            ParkingLot currentParkingLot=null;
+            for (ParkingLot p :this.parkingLotList) {
+                isRightTicket=p.isContainParkTicket(parkTicket);
+                if (isRightTicket) {
+                    currentParkingLot=p;
+                    break;
+                }
+            }
+
             if (isRightTicket) {
                 if (!parkTicket.isUsed()) {
                     //没有被使用则获取正确car
-                   car= this.parkingLot.getCars().stream().
+
+                   car= currentParkingLot.getCars().stream().
                            filter(e->e.getCarNumber()==parkTicket.getCarNumber()).findFirst().get();
-                   this.parkingLot.getCars().remove(car);
-                   this.parkingLot.getParkTicketList().remove(parkTicket);
+                   currentParkingLot.getCars().remove(car);
+                  parkTicket.setUsed(true);
 
                 }else {
                     this.errorMessage= ErrorMessage.WRONG_TICKET_MESSAGE.getValue();

@@ -12,7 +12,11 @@ public class ParkingBoyTest {
     public void should_return_a_ticket_when_parking_a_car() {
         //given
         ParkingLot parkingLot=new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car("333");
         //when
         ParkTicket parkTicket=parkingBoy.park(car);
@@ -27,12 +31,20 @@ public class ParkingBoyTest {
     public void should_return_no_ticket_when_parkingLot_capacity_isNotEnough() {
         //given
         ParkingLot parkingLot=new ParkingLot(2);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(2);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car = new Car();
         Car car1 = new Car();
         Car car2 = new Car();
+        Car car11 = new Car();
+        Car car22 = new Car();
         parkingLot.addCar(car1);
         parkingLot.addCar(car2);
+        parkingLot1.addCar(car11);
+        parkingLot1.addCar(car22);
         //when
         ParkTicket parkTicket=parkingBoy.park(car);
         String message=parkingBoy.getErrorMessage();
@@ -44,7 +56,11 @@ public class ParkingBoyTest {
     public void should_return_parkTicketList_when_add_a_car_list() {
         //given
         ParkingLot parkingLot=new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Car car1 = new Car("111");
         Car car2 = new Car("222");
         List<Car> carList = new ArrayList<>();
@@ -64,7 +80,11 @@ public class ParkingBoyTest {
     public void should_return_right_car_when_get_a_correspond_ticket () {
         //given
         ParkingLot parkingLot=new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         ParkTicket parkTicket=new ParkTicket();
          parkingLot.addParTicket(parkTicket);
         Car car = new Car("123");
@@ -81,7 +101,11 @@ public class ParkingBoyTest {
     public void should_return_no_car_when_get_a_ticket_is_null () {
         //given
         ParkingLot parkingLot=new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         ParkTicket parkTicket=null;
 
         //when
@@ -93,7 +117,11 @@ public class ParkingBoyTest {
     public void should_return_no_car_when_get_a_wrong_ticket () {
         //given
         ParkingLot parkingLot=new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         ParkTicket parkTicket=new ParkTicket();
 
 
@@ -109,7 +137,11 @@ public class ParkingBoyTest {
     public void should_return_no_car_when_get_a_ticket_is_used () {
         //given
         ParkingLot parkingLot=new ParkingLot(10);
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         ParkTicket parkTicket=new ParkTicket();
         parkTicket.setUsed(true);
         parkingLot.addParTicket(parkTicket);
