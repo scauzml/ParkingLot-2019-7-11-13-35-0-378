@@ -4,11 +4,26 @@ import com.sun.deploy.util.StringUtils;
 import com.thoughtworks.tdd.messageenum.ErrorMessage;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ParkingBoy {
      private List<ParkingLot> parkingLotList;
      private String errorMessage;
+     private String name;
+
+    public ParkingBoy(List<ParkingLot> parkingLotList, String name) {
+        this.parkingLotList = parkingLotList;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public List<ParkingLot> getParkingLotList() {
         return parkingLotList;
@@ -119,5 +134,11 @@ public class ParkingBoy {
         }
 
         return car;
+    }
+
+    public ParkingLot findMoreEmptyOptionParkingLOt() {
+
+        return this.parkingLotList.stream().max(Comparator.comparingInt(ParkingLot::getAllowance)).get();
+
     }
 }

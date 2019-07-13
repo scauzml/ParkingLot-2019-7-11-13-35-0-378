@@ -6,22 +6,33 @@ import java.util.List;
 public class ParkingLot {
     private List<Car> cars = new ArrayList<>();
     private List<ParkTicket> parkTicketList = new ArrayList<>();
-
+    private int capacity;
+    private int allowance;
     public List<ParkTicket> getParkTicketList() {
         return parkTicketList;
     }
 
     public void setParkTicketList(List<ParkTicket> parkTicketList) {
         this.parkTicketList = parkTicketList;
+
     }
 
-    private int capacity;
+
 
     public ParkingLot() {
     }
 
+    public int getAllowance() {
+        return allowance;
+    }
+
+    public void setAllowance(int allowance) {
+        this.allowance = allowance;
+    }
+
     public ParkingLot(int capacity) {
         this.capacity = capacity;
+        this.allowance=capacity;
     }
 
     public int getCapacity() {
@@ -42,6 +53,7 @@ public class ParkingLot {
 
     public boolean addCar(Car car) {
         cars.add(car);
+        this.allowance=this.capacity-1;
         return true;
     }
 

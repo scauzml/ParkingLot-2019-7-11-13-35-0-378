@@ -28,6 +28,50 @@ public class ParkingBoyTest {
     }
 
     @Test
+    public void should_return_a_ticket_when_parking_a_car_into_more_epmty_options() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,"SMART PARKING BOY");
+
+        Car car = new Car("333");
+
+        Car car1 = new Car("3323");
+        Car car2 = new Car("3335");
+        parkingLot.addCar(car1);
+        parkingLot.addCar(car2);
+
+        //when
+        ParkTicket parkTicket=parkingBoy.park(car);
+
+        //then
+        ParkTicket parkTicket1 = new ParkTicket();
+        parkTicket1.setCarNumber(car.getCarNumber());
+        Assertions.assertEquals(parkTicket1,parkTicket);
+    }
+    @Test
+    public void should_return_a_parkinglot_when_call_findMoreEmptyOptionParkingLOt() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        Car car1 = new Car("3323");
+        Car car2 = new Car("3335");
+        parkingLot.addCar(car1);
+        parkingLot.addCar(car2);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        //when
+        ParkingLot parkingLot2=parkingBoy.findMoreEmptyOptionParkingLOt();
+
+        Assertions.assertEquals(parkingLot1,parkingLot2);
+    }
+
+    @Test
     public void should_return_no_ticket_when_parkingLot_capacity_isNotEnough() {
         //given
         ParkingLot parkingLot=new ParkingLot(2);
