@@ -61,4 +61,8 @@ public class ParkingLot {
 
        return this.parkTicketList.contains(parkTicket);
     }
+    public boolean isContainCar(Car car) {
+
+        return this.cars.contains(car);
+    }
 }

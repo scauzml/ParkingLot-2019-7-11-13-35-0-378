@@ -1,7 +1,17 @@
 package com.thoughtworks.tdd;
 
 public class Customer {
-     private Car car;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    private Car car;
 
     public Car getCar() {
         return car;
