@@ -40,4 +40,16 @@ public class ParkingLotTest {
         //then
         Assertions.assertEquals(true,isSuccess);
     }
+    @Test
+    public void should_return_false_when_ticket_notin_parkingLot() {
+        //given
+        ParkingLot parkingLot=new ParkingLot();
+        ParkTicket parkTicket=new ParkTicket();
+
+
+        //when
+        boolean isSuccess=parkingLot.isContainParkTicket(parkTicket);
+        //then
+        Assertions.assertEquals(false,isSuccess);
+    }
 }
