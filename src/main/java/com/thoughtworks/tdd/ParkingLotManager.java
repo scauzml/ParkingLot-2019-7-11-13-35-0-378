@@ -18,6 +18,11 @@ public class ParkingLotManager {
         this.parkingLotList = parkingLotList;
     }
 
+    public ParkingLotManager(List<ParkingBoy> parkingBoyList, List<ParkingLot> parkingLots) {
+        this.parkingBoys=parkingBoyList;
+        this.parkingLotList=parkingLots;
+    }
+
     public List<ParkingLot> getParkingLotList() {
         return parkingLotList;
     }

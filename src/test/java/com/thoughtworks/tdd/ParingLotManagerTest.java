@@ -79,4 +79,35 @@ public class ParingLotManagerTest {
         Assertions.assertEquals(car,car1);
 
     }
+
+    @Test
+    public void should_return_no_ticket_when_parkingLot_capacity_isNotEnough_by_specify_parkboy() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(2);
+        ParkingLot parkingLot1=new ParkingLot(2);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        parkingBoy.setName("parkboy1");
+        Car car = new Car();
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Car car11 = new Car();
+        Car car22 = new Car();
+        parkingLot.addCar(car1);
+        parkingLot.addCar(car2);
+        parkingLot1.addCar(car11);
+        parkingLot1.addCar(car22);
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoyList.add(parkingBoy);
+
+        ParkingLotManager parkingLotManager=new ParkingLotManager(parkingBoyList,parkingLots);
+        //when
+        ParkTicket parkTicket=parkingLotManager.specifyBoyToPark("parkboy1",car);
+        String message=parkingBoy.getErrorMessage();
+        //then
+        Assertions.assertEquals(null,parkTicket);
+        Assertions.assertEquals("Not enough position.",message);
+    }
 }
