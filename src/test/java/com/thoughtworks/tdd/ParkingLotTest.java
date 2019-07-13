@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingLotTest {
+
     @Test
     public void should_return_true_when_add_a_car() {
         //given
@@ -16,6 +17,7 @@ public class ParkingLotTest {
         boolean isSuccess=parlingLot.addCar(car);
         //then
         Assertions.assertEquals(true,isSuccess);
+
     }
 
     @Test
