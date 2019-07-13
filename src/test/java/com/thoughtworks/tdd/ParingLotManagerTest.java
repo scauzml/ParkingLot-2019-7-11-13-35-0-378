@@ -37,4 +37,22 @@ public class ParingLotManagerTest {
         Assertions.assertTrue(isSucessful);
 
     }
+
+    @Test
+    public void should_return_a_ticket_when_parking_a_car_by_manger() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLots);
+        Car car = new Car("333");
+        //when
+        ParkTicket parkTicket=parkingLotManager.park(car);
+        //then
+        ParkTicket parkTicket1 = new ParkTicket();
+        parkTicket1.setCarNumber(car.getCarNumber());
+        Assertions.assertEquals(parkTicket1,parkTicket);
+    }
 }
