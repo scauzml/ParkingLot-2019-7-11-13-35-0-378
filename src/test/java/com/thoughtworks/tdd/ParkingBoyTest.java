@@ -19,6 +19,16 @@ public class ParkingBoyTest {
         Assertions.assertEquals(ParkTicket.class,parkTicket.getClass());
     }
     @Test
+    public void should_return_no_ticket_when_parkingLot_() {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        Car car = new Car();
+        //when
+        ParkTicket parkTicket=parkingBoy.park(car);
+        //then
+        Assertions.assertEquals(ParkTicket.class,parkTicket.getClass());
+    }
+    @Test
     public void should_return_parkTicketList_when_add_a_car_list() {
         //given
         ParkingBoy parkingBoy = new ParkingBoy();
@@ -40,5 +50,39 @@ public class ParkingBoyTest {
         Car car = parkingBoy.fetchRightCar(parkTicket);
         //then
         Assertions.assertEquals(Car.class,car.getClass());
+    }
+    @Test
+    public void should_return_no_car_when_get_a_ticket_is_null () {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkTicket parkTicket=null;
+
+        //when
+        Car car = parkingBoy.fetchRightCar(parkTicket);
+        //then
+        Assertions.assertEquals(null,car);
+    }
+    @Test
+    public void should_return_no_car_when_get_a_wrong_ticket () {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+
+
+        //when
+
+        //then
+
+    }
+    @Test
+    public void should_return_no_car_when_get_a_ticket_is_used () {
+        //given
+        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkTicket parkTicket=new ParkTicket();
+        parkTicket.setUsed(true);
+
+        //when
+        Car car = parkingBoy.fetchRightCar(parkTicket);
+        //then
+        Assertions.assertEquals(null,car);
     }
 }

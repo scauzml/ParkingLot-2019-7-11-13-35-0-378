@@ -1,5 +1,7 @@
 package com.thoughtworks.tdd;
 
+import com.sun.deploy.util.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,12 @@ public class ParkingBoy {
     }
 
     public Car fetchRightCar(ParkTicket parkTicket) {
-        Car car=new Car();
+        Car car=null;
+        if (parkTicket == null||parkTicket.isUsed()) {
+            car=null;
+        }else {
+            car = new Car();
+        }
         return car;
     }
 }
