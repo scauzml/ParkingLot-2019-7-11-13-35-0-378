@@ -55,4 +55,26 @@ public class ParingLotManagerTest {
         parkTicket1.setCarNumber(car.getCarNumber());
         Assertions.assertEquals(parkTicket1,parkTicket);
     }
+
+    @Test
+    public void should_return_right_car_when_get_a_correspond_ticket () {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingLotManager parkingLotManager = new ParkingLotManager(parkingLots);
+        ParkTicket parkTicket=new ParkTicket();
+        parkingLot.addParTicket(parkTicket);
+        Car car = new Car("123");
+        parkingLot.addCar(car);
+        parkTicket.setCarNumber(car.getCarNumber());
+        parkingLot.addParTicket(parkTicket);
+        //when
+        Car car1 = parkingLotManager.fetchRightCar(parkTicket);
+        //then
+        Assertions.assertEquals(car,car1);
+
+    }
 }
