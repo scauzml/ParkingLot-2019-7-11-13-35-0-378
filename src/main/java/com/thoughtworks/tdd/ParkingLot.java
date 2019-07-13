@@ -8,6 +8,7 @@ public class ParkingLot {
     private List<ParkTicket> parkTicketList = new ArrayList<>();
     private int capacity;
     private int allowance;
+    private double positionrate;
     public List<ParkTicket> getParkTicketList() {
         return parkTicketList;
     }
@@ -18,6 +19,13 @@ public class ParkingLot {
     }
 
 
+    public double getPositionrate() {
+        return positionrate;
+    }
+
+    public void setPositionrate(double positionrate) {
+        this.positionrate = positionrate;
+    }
 
     public ParkingLot() {
     }
@@ -33,6 +41,7 @@ public class ParkingLot {
     public ParkingLot(int capacity) {
         this.capacity = capacity;
         this.allowance=capacity;
+        this.positionrate=this.allowance/this.capacity;
     }
 
     public int getCapacity() {
@@ -54,6 +63,7 @@ public class ParkingLot {
     public boolean addCar(Car car) {
         cars.add(car);
         this.allowance=this.capacity-1;
+        this.positionrate=this.allowance/this.capacity;
         return true;
     }
 

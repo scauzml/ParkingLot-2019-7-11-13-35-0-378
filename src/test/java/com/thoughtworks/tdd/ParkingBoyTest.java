@@ -36,22 +36,45 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot);
         parkingLots.add(parkingLot1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots,"SMART PARKING BOY");
-
         Car car = new Car("333");
-
         Car car1 = new Car("3323");
         Car car2 = new Car("3335");
         parkingLot.addCar(car1);
         parkingLot.addCar(car2);
-
         //when
         ParkTicket parkTicket=parkingBoy.park(car);
 
         //then
         ParkTicket parkTicket1 = new ParkTicket();
         parkTicket1.setCarNumber(car.getCarNumber());
-        Assertions.assertEquals(parkTicket1,parkTicket);
+        Assertions.assertTrue(parkingLot1.isContainParkTicket(parkTicket1));
+
     }
+    @Test
+    public void should_return_a_ticket_when_parking_a_car_into_larger_position_rate() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots,"SUPER SMART PARKING BOY");
+        Car car = new Car("333");
+        Car car1 = new Car("3323");
+        Car car2 = new Car("3335");
+        parkingLot.addCar(car1);
+        parkingLot.addCar(car2);
+        //when
+        ParkTicket parkTicket=parkingBoy.park(car);
+
+        //then
+        ParkTicket parkTicket1 = new ParkTicket();
+        parkTicket1.setCarNumber(car.getCarNumber());
+        Assertions.assertTrue(parkingLot1.isContainParkTicket(parkTicket1));
+
+    }
+
+
     @Test
     public void should_return_a_parkinglot_when_call_findMoreEmptyOptionParkingLOt() {
         //given
