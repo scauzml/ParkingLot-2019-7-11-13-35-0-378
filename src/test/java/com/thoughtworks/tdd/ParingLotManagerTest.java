@@ -105,9 +105,58 @@ public class ParingLotManagerTest {
         ParkingLotManager parkingLotManager=new ParkingLotManager(parkingBoyList,parkingLots);
         //when
         ParkTicket parkTicket=parkingLotManager.specifyBoyToPark("parkboy1",car);
-        String message=parkingBoy.getErrorMessage();
+        String message=parkingLotManager.getErrorMessage();
         //then
         Assertions.assertEquals(null,parkTicket);
         Assertions.assertEquals("Not enough position.",message);
+    }
+
+    @Test
+    public void should_return_no_car_when_get_a_wrong_ticket () {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ParkTicket parkTicket=new ParkTicket();
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoy.setName("parkboy1");
+        parkingBoyList.add(parkingBoy);
+        Car car = new Car("55555");
+        ParkingLotManager parkingLotManager=new ParkingLotManager(parkingBoyList,parkingLots);
+
+        //when
+        Car car1=parkingLotManager.specifyBoyTofetch("parkboy1",parkTicket);
+        String errorMessage=parkingLotManager.getErrorMessage();
+        //then
+        Assertions.assertEquals(null,car1);
+        Assertions.assertEquals("Unrecognized parking ticket.",errorMessage);
+
+    }
+
+    @Test
+    public void should_return_no_car_when_get_a_wrong_ticket_is_null() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ParkTicket parkTicket=null;
+        List<ParkingBoy> parkingBoyList = new ArrayList<>();
+        parkingBoy.setName("parkboy1");
+        parkingBoyList.add(parkingBoy);
+        ParkingLotManager parkingLotManager=new ParkingLotManager(parkingBoyList,parkingLots);
+
+        //when
+        Car car1=parkingLotManager.specifyBoyTofetch("parkboy1",parkTicket);
+        String errorMessage=parkingLotManager.getErrorMessage();
+        //then
+        Assertions.assertEquals(null,car1);
+        Assertions.assertEquals("Please provide your parking ticket.",errorMessage);
+
     }
 }

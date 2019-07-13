@@ -68,7 +68,7 @@ public class ParkingLotManager {
     }
     public Car specifyBoyTofetch(String parkingBoyname, ParkTicket parkTicket) {
         ParkingBoy parkingBoy=this.getParkingBoys().stream().filter(e->e.getName()==parkingBoyname).map(e->(e)).findFirst().get();
-        if (parkingBoy != null) {
+        if (parkingBoy == null) {
             return null;
         }
         Car car = parkingBoy.fetchRightCar(parkTicket);

@@ -220,4 +220,25 @@ public class ParkingBoyTest {
         Assertions.assertEquals("Unrecognized parking ticket.",errorMessage);
 
     }
+
+    @Test
+    public void should_return_no_car_when_get_a_wrong_ticket_is_null() {
+        //given
+        ParkingLot parkingLot=new ParkingLot(10);
+        ParkingLot parkingLot1=new ParkingLot(10);
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        parkingLots.add(parkingLot1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
+        ParkTicket parkTicket=null;
+
+
+        //when
+        Car car = parkingBoy.fetchRightCar(parkTicket);
+        String errorMessage=parkingBoy.getErrorMessage();
+        //then
+        Assertions.assertEquals(null,car);
+        Assertions.assertEquals("Please provide your parking ticket.",errorMessage);
+
+    }
 }
