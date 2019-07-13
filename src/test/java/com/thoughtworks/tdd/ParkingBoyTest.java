@@ -11,28 +11,31 @@ public class ParkingBoyTest {
     @Test
     public void should_return_a_ticket_when_parking_a_car() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
         //when
         ParkTicket parkTicket=parkingBoy.park(car);
         //then
         Assertions.assertEquals(ParkTicket.class,parkTicket.getClass());
     }
-    @Test
-    public void should_return_no_ticket_when_parkingLot_() {
-        //given
-        ParkingBoy parkingBoy = new ParkingBoy();
-        Car car = new Car();
-        //when
-        ParkTicket parkTicket=parkingBoy.park(car);
-        //then
-        Assertions.assertEquals(ParkTicket.class,parkTicket.getClass());
-    }
+
+//    @Test
+//    public void should_return_no_ticket_when_parkingLot_() {
+//        //given
+//        ParkingLot parkingLot=new ParkingLot();
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+//        Car car = new Car();
+//        //when
+//        ParkTicket parkTicket=parkingBoy.park(car);
+//        //then
+//        Assertions.assertEquals(ParkTicket.class,parkTicket.getClass());
+//    }
     @Test
     public void should_return_parkTicketList_when_add_a_car_list() {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy();
-        Car car = new Car();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);        Car car = new Car();
         Car car1 = new Car();
         List<Car> carList = new ArrayList<>();
         //when
@@ -43,7 +46,8 @@ public class ParkingBoyTest {
     @Test
     public void should_return_right_car_when_get_a_correspond_ticket () {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         ParkTicket parkTicket=new ParkTicket();
 
         //when
@@ -54,7 +58,8 @@ public class ParkingBoyTest {
     @Test
     public void should_return_no_car_when_get_a_ticket_is_null () {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         ParkTicket parkTicket=null;
 
         //when
@@ -65,7 +70,8 @@ public class ParkingBoyTest {
     @Test
     public void should_return_no_car_when_get_a_wrong_ticket () {
         //given
-        ParkingBoy parkingBoy = new ParkingBoy();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
 
 
         //when

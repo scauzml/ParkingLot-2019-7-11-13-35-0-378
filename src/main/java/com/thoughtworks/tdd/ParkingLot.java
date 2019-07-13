@@ -5,6 +5,16 @@ import java.util.List;
 
 public class ParkingLot {
     private List<Car> cars = new ArrayList<>();
+    private List<ParkTicket> parkTicketList = new ArrayList<>();
+
+    public List<ParkTicket> getParkTicketList() {
+        return parkTicketList;
+    }
+
+    public void setParkTicketList(List<ParkTicket> parkTicketList) {
+        this.parkTicketList = parkTicketList;
+    }
+
     private int capacity;
 
     public ParkingLot() {
@@ -41,5 +51,14 @@ public class ParkingLot {
             isEnough=false;
         }
         return isEnough;
+    }
+
+    public void addParTicket(ParkTicket parkTicket) {
+        parkTicketList.add(parkTicket);
+    }
+
+    public boolean isContainParkTicket(ParkTicket parkTicket) {
+
+       return this.parkTicketList.contains(parkTicket);
     }
 }

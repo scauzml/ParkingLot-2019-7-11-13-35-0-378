@@ -28,4 +28,16 @@ public class ParkingLotTest {
         Assertions.assertEquals(true,isSuccess);
     }
 
+    @Test
+    public void should_return_true_when_ticket_in_parkingLot() {
+        //given
+        ParkingLot parkingLot=new ParkingLot();
+        ParkTicket parkTicket=new ParkTicket();
+        parkingLot.addParTicket(parkTicket);
+
+        //when
+        boolean isSuccess=parkingLot.isContainParkTicket(parkTicket);
+        //then
+        Assertions.assertEquals(true,isSuccess);
+    }
 }
